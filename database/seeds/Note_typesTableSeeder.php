@@ -9,17 +9,17 @@ class Note_typesTableSeeder extends Seeder {
 	public function run()
 	{
         $note_type = \App\Note_type::create(array(
-            'format' => 'Youtube video',
+            'format' => 'Video',
             'description' => 'Video link to Youtube'
         ));
 
         $note_type = \App\Note_type::create(array(
-            'format' => 'Announcement',
+            'format' => 'Text',
             'description' => 'Text Announcement'
         ));
 
         $note_type = Note_type::create(array(
-            'format' => 'Slide Presentation',
+            'format' => 'Slides',
             'description' => 'HTML slides'
         ));
 
@@ -29,8 +29,8 @@ class Note_typesTableSeeder extends Seeder {
         ));
 
         $note_type = Note_type::create(array(
-            'format' => 'Game/App',
-            'description' => 'Links to a Game or an App'
+            'format' => 'Link',
+            'description' => 'Links to a Game or an App or anything'
         ));
 
         $note_type = Note_type::create(array(

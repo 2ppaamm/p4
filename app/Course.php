@@ -3,6 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redirect;
 
 class Course extends Model {
 
@@ -23,6 +24,9 @@ class Course extends Model {
         return $this->hasMany('App\Course_section', 'course_id')->orderBy('lesson_number');
     }
 
+    public function notes(){
+        return $this->hasManyThrough('App\Course_section_note','App\Course_section');
+    }
     public function enrollments(){                                      // each course has many enrollments
         return $this->hasMany('App\Enrollment');
     }
@@ -38,6 +42,12 @@ class Course extends Model {
     public function access(){
         return $this->morphMany('App\Access', 'accessibility');
     }
+    public function latestFiveNotes()
+    {
+        return $this->hasManyThrough('App\Course_section_note','App\Course_section')
+            ->limit(5);
+    }
+
 
     /** Get the list of courses in the system
      *
@@ -63,38 +73,105 @@ class Course extends Model {
      */
     public static function userCourses($userid){
         // Check for this user's course info from the cache first
-        if (Cache::has('usercourse'.$userid))
-        {
-            $mycourses = Cache::get('usercourse'.$userid);
-        }
-        else {
-            $mycourses = Course::with(['course_sections' => function($query) {
-                $query->orderBy('lesson_number')->select('title');
-            }])
-                ->with(['enrollments' => function($query) {
-                    $query->where('user_id', '=', Auth::user()->id)->select('id');
+        try {
+            if (Cache::has('usercourse'.$userid)) {
+                $mycourses = Cache::get('usercourse'.$userid);
+            }
+            else {
+                $mycourses = Course::with(['course_sections' => function ($query) {
+                    $query->orderBy('lesson_number')->select('title');
                 }])
-                ->with(['course_roles'=>function($query) {
-                    $query->distinct()->select('description');
-                }])
-                ->select('id','title','description')
-                ->get()
-                ->unique();
+                    ->with(['enrollments' => function ($query) use ($userid) {
+                        $query->where('user_id', '=', $userid)->select('id');
+                    }])
+                    ->with(['course_roles' => function ($query) {
+                        $query->distinct()->select('description');
+                    }])
+                    ->select('id', 'title', 'description')
+                    ->get()
+                    ->unique();
 
-            Cache::put('usercourse' . $userid, $mycourses, 3);
+                Cache::put('usercourse' . $userid, $mycourses, 3);
+            }
+        }
+        catch(exception $e) {
+                return Redirect::back()->with('flash_message', 'Error in retrieving your courses. Try later');
         }
         return $mycourses;
     }
 
+    /** Find courses belonging to a course code
+     * @params course code
+     * @return course list with the same course code
+     */
     public static function course_code_courselist($course_code){
-        if (Cache::has('course_code_courselist'.$course_code)) {
-            $course_code_courses = Cache::get('course_code_courselist'.$course_code);
+        try {
+            if (Cache::has('course_code_courselist' . $course_code)) {
+                $course_code_courses = Cache::get('course_code_courselist' . $course_code);
+            } else {
+                $course_code_courses = Course::whereCourse_code_id($course_code)
+                    ->with('creator')->with('course_code')->with('course_type')->get();
+                Cache::put('course_code_list' . $course_code, $course_code_courses, 3);
+            }
         }
-        else {
-            $course_code_courses = Course::whereCourse_code_id($course_code)
-                ->with('creator')->with('course_code')->with('course_type')->get();
-            Cache::put('course_code_list'.$course_code, $course_code_courses, 3);
+        catch(exception $e){
+            return Redirect::back()->with('flash_message', 'Error in retrieving courses with course code '.$course_code);
         }
         return $course_code_courses;
     }
+
+    /**
+     * Retrieve course info
+     *
+     * @param  int  $id
+     * @return details of course, including the sections in the course, and the notes within each section
+     */
+    public static function getCourseInfo($id){
+        if (Cache::has('course'.$id)) {                                                                  // Check if course is cached and then retrieve cached info
+            $course = Cache::get('course'.$id);
+        }
+        else {
+            try {
+                $course = Course::updateCache($id);
+            }
+            catch(exception $e) {
+                return Redirect::back()->with('flash_message', 'Cache not updated');
+            }
+        }
+        return $course;
+    }
+
+    /** This method will update the cache version of the course whenever any update
+     * to the notes or section is done
+     * @params  course id
+     * @return course information
+     */
+    public static function updateCache($id){
+        try {
+            $course = Course::with(['course_sections.notes' => function ($query) {
+                $query->orderBy('note_order', 'asc')->select('id', 'title', 'description', 'note_order')->get();
+            }])
+                ->with('course_code')
+                ->with(['course_sections' => function ($query) {
+                    $query->orderBy('lesson_number', 'asc')->orderBy('created_at', 'asc')->select('id', 'title', 'description', 'lesson_number', 'guid', 'lesson_date');
+                }])
+                ->with(['course_sections.notes.note_type' => function ($query) {
+                    $query->select('id', 'format', 'description');
+                }])
+                ->with(['enrollments.participant' => function ($query) {
+                    $query->where('id', '=', Auth::user()->id);
+                }])
+                ->whereId($id)
+                ->orderBy('updated_at', 'desc')
+                ->firstorfail();
+        }
+        catch(ModelNotFoundException $e) {
+            dd(get_class_methods($e)); // lists all available methods for exception object
+            dd($e);
+        }
+            Cache::put('course'.$id, $course, 100);                   // Cache information
+
+        return $course;
+    }
+
 }

@@ -43,14 +43,36 @@
 									<li><i class="fa fa-calendar"></i> Start Date: {{$class->startdate}}</li>
 									<li><i class="fa fa-calendar-o"></i> End Date: {{$class->enddate}}</li>
 									<li><i class="fa fa-clock-o"></i> Duration: {{$class->duration}}</li>
-									<li><i class="fa fa-heart"></i> Historical rating by students: To be implemented</li>
-									<li><i class="fa fa-star"></i> Historical rating by All Gifted: To be implemented</li>
+									<li><i class="fa fa-heart"></i> Rating by students: TBD</li>
+									<li><i class="fa fa-star"></i> Rating by All Gifted: TBD</li>
 								</ul>
 								<div class="pricing-footer">
 									<p> {{$class->description}}	</p>
-									<a href="javascript:;" class="btn yellow-crusta">
-										Sign Up <i class="m-icon-swapright m-icon-white"></i>
-									</a>
+									@foreach ($errors->all() as $error)
+									    <p class="error">{{ $error }}</p>
+									@endforeach
+									<!-- Enrol Form starts -->
+								    {!! Form::open([
+								        'url' => '/enrollment',
+								        'id' => 'enrollment',
+								        'name'=>'enrolment'
+								    ]) !!}
+								    <!-- Course_id form input -->
+							            {!! Form::hidden('course_id', $class->id,[
+							                'id' => 'course_id'
+						                ]) !!}
+								    <!-- end: text input Course_id -->
+								    <!-- Course_code form input -->
+								        {!! Form::hidden('course_code', $class->course_code_id,[
+								            'id' => 'course_code',
+								        ]) !!}
+								    <!-- end: text input Course_code -->
+                                        <button class="btn yellow-crusta" type="submit">
+                                            Enrol <i class="m-icon-swapright m-icon-white"></i>
+                                        </button>
+									{!! Form::close() !!}
+									<!-- Enrol Form ends -->
+
 								</div>
 							</div>
 						</div>

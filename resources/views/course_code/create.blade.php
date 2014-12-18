@@ -600,10 +600,9 @@
 											<a href="javascript:;" class="btn blue button-next">
 											Continue <i class="m-icon-swapright m-icon-white"></i>
 											</a>
-											<a href="javascript:;" class="btn green button-submit">
-												Submit <i class="m-icon-swapright m-icon-white"></i>
-											    <button type="submit" style="display: block" id="course_code_submit"></button>        <!-- hide a submit button -->
-											</a>
+											    <button type="submit"  class="btn green button-submit" id="course_code_submit">
+											        Submit <i class="m-icon-swapright m-icon-white"></i>
+                                                </button>
 										</div>
 									</div>
 								</div>

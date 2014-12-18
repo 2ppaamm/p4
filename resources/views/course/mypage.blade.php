@@ -22,7 +22,7 @@
     		</div>
     	</div>
 		@if(count('mycourses')<1)
-    	    I have no course, list courses interest/surfed before/ close to framework level
+    	    You have not registered for any course.
 	    @else
 	        @for($i=0; $i<count($mycourses); $i++)
             	<div class="portlet-body">
@@ -43,9 +43,13 @@
             				</div>
             			<div id="collapse_3_{{$i}}" class="panel-collapse collapse">
                      		<div class="panel-body">
-                                <p>{{ $mycourses[$i]->description}} </p>
-                                <p> Latest news/todo/updates/alerts on each course</p>
-                                <p>Touch the course title to go to the course page, otherwise just open accordion</p>
+                                <p>Course Description: {{ $mycourses[$i]->description}} </p>
+                                <p> Latest notes: </p>
+                                @foreach($mycourses[$i]->notes as $note)
+                                    <div>
+                                        <a href="{{$note->link}}">{{$note->title}}: {{$note->description}}</a>
+                                    </div>
+                                @endforeach
             		        </div>
             	        </div>
                     </div>

@@ -1,3 +1,8 @@
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<![endif]-->
+<!-- END CORE PLUGINS -->
 <!--[if lt IE 9]>
 <script src="/assets/global/plugins/respond.min.js"></script>
 <script src="/assets/global/plugins/excanvas.min.js"></script>
@@ -16,8 +21,3 @@
 <script src="/assets/global/scripts/metronic.js" type="text/javascript"></script>
 <script src="/assets/admin/layout3/scripts/layout.js" type="text/javascript"></script>
 <script src="/assets/admin/layout3/scripts/demo.js" type="text/javascript"></script>
-<script>
-jQuery(document).ready(function() {
-   Layout.init(); // init layout
-});
-</script>

@@ -10,10 +10,10 @@ class EnrollmentsTableSeeder extends Seeder {
 	public function run()
 	{
 		$faker = Faker::create();
-        for ($i = 0; $i < 200; $i++)
+        for ($i = 0; $i < 100; $i++)
         {
             $enrollment = Enrollment::create(array(
-                'user_id' => $faker->randomNumber(1,11),
+                'user_id' => $faker->randomNumber(1,100),
                 'course_id' => $faker->randomNumber(1,10),
                 'course_role_id' => 6,
                 'privacy'=>False

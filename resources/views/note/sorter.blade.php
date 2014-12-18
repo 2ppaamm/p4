@@ -6,23 +6,25 @@
         @else
         <!-- start: Display the course sections -->
             @for($i=0; $i<count($course->course_sections); $i++)
-                <div class="todo-tasklist-item todo-tasklist-item-border-purple">
-                    <img class="todo-userpic pull-left" src="{{ $course->course_sections[$i]->guid }}" width="27px" height="27px">
-                    <div class="todo-tasklist-item-title">
-                       Lesson: {{ $course->course_sections[$i]->lesson_number }}|{{ $course->course_sections[$i]->title }}
-                    </div>
-                    <div class="todo-tasklist-item-text">
-                        {{ $course->course_sections[$i]->description}}
-                    </div>
-                    <div class="todo-tasklist-controls pull-left">
-                        <span class="todo-tasklist-date"><i class="fa fa-calendar"></i> {{ $course->course_sections[$i]->lesson_date }} </span>
-
-                        <!-- Allows adding of notes when clicked. Sows a form -->
-                        <a class="todo-tasklist-badge badge badge-roundless" data-toggle="modal" data-section-id ="{{ $course->course_sections[$i]->id }}" href="#responsive">
+                <ul class="nav nav-tabs todo-tasklist-item todo-tasklist-item-border-purple" name="lesson-number" id = '{{ $course->course_sections[$i]->lesson_number }}'>
+                    <a href="#tab_1_{{ $course->course_sections[$i]->lesson_number }}" data-toggle="tab" id = 'section{{$course->course_sections[$i]->lesson_number}}'>
+                        <img class="todo-userpic pull-left" src="{{ $course->course_sections[$i]->guid }}" width="27px" height="27px">
+                        <div class="todo-tasklist-item-title">
+                            Lesson: {{ $course->course_sections[$i]->lesson_number }}|{{ $course->course_sections[$i]->title }}
+                        </div>
+                        <div class="todo-tasklist-item-text">
+                            {!! $course->course_sections[$i]->description !!}
+                        </div>
+                        <div class="todo-tasklist-controls pull-left">
+                            <span class="todo-tasklist-date"><i class="fa fa-calendar"></i> {{ $course->course_sections[$i]->lesson_date }} </span>
+                            <!-- Allows adding of notes when clicked. Sows a form -->
+                            <a class="todo-tasklist-badge badge badge-roundless" data-toggle="modal"
+                                data-section-id ="{{ $course->course_sections[$i]->id }}"
+                                data-lesson-number="{{$course->course_sections[$i]->lesson_number}}" href="#responsive">
                             Add a Note </a>
-                    </div>
-                </div>
-
+                        </div>
+                    </a>
+                </ul>
                 <!-- end: Display course sections -->
 
                 <!-- Arrange notes in each section in order determined by instructor -->
@@ -36,6 +38,7 @@
                             <ol class="dd-list">
                                 @foreach ($course->course_sections[$i]->notes as $note)
                                     @include('note.display')
+                                    @include('note.edit')
                                 @endforeach
                             </ol>
                         @endif

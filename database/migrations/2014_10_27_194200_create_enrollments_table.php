@@ -28,6 +28,7 @@ class CreateEnrollmentsTable extends Migration {
             $table->integer('course_role_id')
                 ->unsigned()
                 ->default(6);                       //default role to student
+            $table->unique(['user_id', 'course_id','course_role_id']);
             $table->foreign('course_role_id')
                 ->references('id')->on('course_roles')
                 ->onDelete('cascade');

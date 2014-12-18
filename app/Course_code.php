@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 
 class Course_code extends Model {
 
@@ -38,19 +39,23 @@ class Course_code extends Model {
      *  @return $teachable_courses
      */
     public static function teachable_courses($userid){
-        if (Cache::has('instructorcourses'.$userid) ) {
-            $teachable_courses = Cache::get('instructorcourses'.$userid);
+        try {
+            if (Cache::has('instructorcourses' . $userid)) {
+                $teachable_courses = Cache::get('instructorcourses' . $userid);
+            } else {
+                $teachable_courses = Course_code::with(['instructors' => function ($query) use ($userid) {
+                    $query->where('user_id', "=", $userid);
+                }])
+                    ->with('author')
+                    ->where('course_status_id', '>', '1')
+                    ->select('course_code', 'course_author', 'title', 'description', 'id', 'cover')
+                    ->get();
+
+                Cache::put('instructorcourses' . $userid, $teachable_courses, 3);
+            }
         }
-        else {
-            $teachable_courses = Course_code::with(['instructors' => function ($query) {
-                $query->where('user_id', "=", Auth::user()->id);
-            }])
-
-                ->where('course_status_id','>','1')
-                ->select('course_code', 'course_author','title', 'description','id','cover')
-                ->get();
-
-            Cache::put('instructorcourses' . $userid, $teachable_courses, 3);
+        catch(exception $e){
+            return Redirect::back()->with('flash_message', 'Error in retrieving courses you can teach.');
         }
         return $teachable_courses;
     }
@@ -97,15 +102,20 @@ class Course_code extends Model {
      *  @return course_list
      */
     public static function course_code_list(){
-        if (Cache::has('systemcourse_codes') ) {
-            $course_code_list = Cache::get('systemcourse_codes');
-        }
-        else {
-            $course_code_list = Course_code::with('subject.framework')->with('author')
-                ->with('course_type')->with('courses')->where('course_status_id', '=','3')->get();
+        try {
+            if (Cache::has('systemcourse_codes')) {
+                $course_code_list = Cache::get('systemcourse_codes');
+            } else {
+                $course_code_list = Course_code::with('subject.framework')->with('author')
+                    ->with('course_type')->with('courses')->where('course_status_id', '=', '3')->get();
 
-            Cache::put('systemcourse_codes', $course_code_list, 3);
+                Cache::put('systemcourse_codes', $course_code_list, 3);
+            }
         }
+        catch(exception $e){
+            return Redirect::back()->with('flash_message','Error in retrieving the course codes in the system.');
+        }
+
         return $course_code_list;
     }
 }

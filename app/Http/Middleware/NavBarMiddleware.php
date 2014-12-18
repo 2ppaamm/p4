@@ -20,11 +20,11 @@ class NavBarMiddleware implements Middleware {
 	 */
 	public function handle($request, Closure $next)
 	{
-        $user = Auth::user('id','username');
+        $user = Auth::user('id','username','image');
         view()->share('user', $user);                                    // user information
         view()->share('subject_list', Subject::listing());                   // system subject list
-        view()->share('mycourses', Course::userCourses($user->id));    // courses user enrolled in
         view()->share('course_list', Course::course_list());                     // system course list
+        view()->share('mycourses', Course::userCourses($user->id));    // courses user enrolled in
         view()->share('teachable_courses', Course_code::teachable_courses($user->id)); //courses a user is authorized to teach                    // system course list
         return $next($request);
 	}

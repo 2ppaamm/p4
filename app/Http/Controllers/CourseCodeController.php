@@ -49,8 +49,9 @@ class CourseCodeController extends Controller {
 	 */
 	public function store(CreateCourseRequest $request)
 	{
-        $response = Course_code::proposeCourse($request);
-        return view('course_code.index', compact('response'));
+        Course_code::proposeCourse($request);
+        $course_code_list = Course_code::course_code_list();
+        return view('course_code.index', compact('course_code_list'));
 	}
 
 	/**

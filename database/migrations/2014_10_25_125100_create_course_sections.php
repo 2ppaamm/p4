@@ -18,7 +18,7 @@ class CreateCourseSections extends Migration {
             $table->increments('id');
             $table->smallInteger('lesson_number');
             $table->string('title');
-            $table->string('description');
+            $table->longText('description');
             $table->string('guid');
             $table->integer('course_id')
                 ->unsigned();

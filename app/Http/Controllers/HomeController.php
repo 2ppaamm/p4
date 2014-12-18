@@ -27,7 +27,7 @@ class HomeController extends Controller {
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
-        $this->user = Auth::user();
+//        $this->user = Auth::user();
         $this->middleware('auth');//, ['except' => 'getLogout']);
         $this->middleware('navbar');//, ['except' => 'getLogout']);
     }

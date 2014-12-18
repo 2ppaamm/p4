@@ -1,6 +1,6 @@
 @extends('_master')
 @section('header')
-    {{{ $course->title}}}
+    {{{$course->course_code->course_code}}}-{{{ $course->title}}}
 @stop
 @section('page_styles')
     <link rel="stylesheet" type="text/css" href="/assets/global/plugins/jquery-nestable/jquery.nestable.css"/>
@@ -35,13 +35,13 @@
                     <div class="row">
                         @include('note.edit')
                     </div>
-                    <div class="row">
+                    <div class="row" id = 'course-main'>
                         <div class="col-md-4 col-sm-3">
                             @include('note.sorter')
-                            @include('note.create')
+                            @include('note.form-modal')
                         </div>
                         <!-- Portlet that displays all notes in each section on the main section -->
-                        <div class="col-md-8 col-sm-9">
+                        <div class="col-md-8 col-sm-9" id="course_body">
         					<div class="portlet light">
         						<div class="portlet-title">
         							<div class="caption">
@@ -87,14 +87,6 @@
        Todo.init(); // init
     });
 
-    // Javascript to find the id of the element clicked on
-    $('.note_action').on('click', function () {
-        alert(this.id)
-        $.get( this.id, function( data ) {
-        $( "#notes" ).html( data );
-        })
-    });
-
     // enables display of a hidden tab with a # on the address bar
     $(function(){
       var hash = window.location.hash;
@@ -111,4 +103,24 @@
             $(e.currentTarget).find('input[name="course_section_id"]').val(sectionId);
         });
     </script>
+
+    <script>
+        // Javascript to find the id of the element clicked on
+        $('.note_action').on('click', function () {
+            alert(this.id)
+            $( "#course_body" ).load( this.id, function() {
+      //      alert( "Load was performed." );
+            })
+        });
+    </script>
+<!-- Script that shows the lesson when mouseover -->
+<script>
+// highlight the right tab
+    $( "ul[name^='lesson-number']" ).click(function () {
+        $("[name^='tab_id']").removeClass('active');
+        $('#tab_id_'+this.id).addClass('active');
+        //$('#section'+this.id).trigger('click');
+    })
+  .click(function(){});
+</script>
 @stop

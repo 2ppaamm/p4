@@ -15,10 +15,9 @@ class CreateSectionNotesTable extends Migration {
         Schema::create('course_section_notes', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->float('note_order')->default(999.00);
-            $table->boolean('lastchild')->default(FALSE);
+            $table->integer('note_order')->default(999);
             $table->string('title');
-            $table->string('description');
+            $table->longText('description');
             $table->string('link')->default('/storage/notes/default-cover.jpg');
             $table->integer('course_section_id')
                 ->unsigned();

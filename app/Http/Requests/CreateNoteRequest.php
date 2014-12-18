@@ -14,15 +14,18 @@ class CreateNoteRequest extends Request {
 	 *
 	 * @return array
 	 */
-    protected $redirectAction = 'NoteController@create';
+//    protected $redirectAction = 'NoteController@create';
 
 	public function rules()
 	{
 		return [
-			'note_type' =>'required|integer|exists:note_types,id',
-            'note_title' =>'required',
-            'note_description'=>'required',
-            'course_section_id' => 'required|exists:course_sections,id'
+			'note_type_id' =>'required|integer|exists:note_types,id',
+            'title' =>'required',
+            'description'=>'required',
+            'course_section_id' => 'exists:course_sections,id',
+            'input-file' => 'required_if:note_type_id,4 | mimes:pdf',
+            'image-file' => 'required_if:note_type_id,10 | image',
+            'url'=>'required_if:note_type_id,1,3,5'
 		];
 	}
 

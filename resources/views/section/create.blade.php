@@ -4,11 +4,10 @@
     @endforeach
     <!-- Section Create Form starts -->
     {!! Form::open([
-        'url' => '/section/create',
-        'id' => 'section_create',
-        'name'=>'section_create',
+        'url' => '/section/post',
+        'id' => 'section_post',
+        'name'=>'section_post',
         'class' => 'form-horizontal',
-        'action' => 'javascript'
     ]) !!}
     <!-- Section Create Form ends -->
 
