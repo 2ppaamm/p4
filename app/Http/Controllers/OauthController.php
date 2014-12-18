@@ -56,10 +56,14 @@ class OauthController extends Controller {
             // Send a request with it
             $result = json_decode( $fb->request( '/me' ), true );
             // Retrieve user from database or create a new user from Facebook account
-            $user = User::firstOrCreate([
-                'username' => $result['name'], 'email'=>$result['email'],
-                'image'=> "https://graph.facebook.com/".$result['id'].'/picture?type=large']);
-  //                   return Pre::render($user);
+            try{
+                $user = User::firstOrCreate([
+                    'username' => $result['name'], 'email'=>$result['email'],
+                    'image'=> "https://graph.facebook.com/".$result['id'].'/picture?type=large']);
+            }
+            catch (exception $e){
+                return Redirect::back()->with('flash_message','Your email address is not verified by the authentication method you selected. You likely have forgotten to click on a "verify email address" link that Google or Facebook should have sent you during your subscribtion to their service.');
+            }
 
             // Login user and then redirect
             $this->auth->login($user);
