@@ -1,8 +1,8 @@
-P3 Project 3 - Developer's Best Friend
-======================================
+P4 Project 4 - Note Management within a Course Management System
+================================================================
 Live URL of the project
 =======================
-<a href="http://p3.pamelalim.me">p3.pamelalim.me</a>
+<a href="http://p4.pamelalim.me">p4.pamelalim.me</a>
 
 Description of the project
 ==========================
