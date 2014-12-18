@@ -43,7 +43,7 @@ Laravel 5 is used in this project. It was a nightmare as there was a delay in th
 
 Demo Information
 ================
-Demonstration will be on the CRUD on notes only.  But feel free to try the rest. It is far from bug free as it is a huge system, I will need quite a few months to complete this system.  Video: <a href="http://screencast.com/t/W6vt9dhy">Click here</a>
+Demonstration will be on the CRUD on notes only.  But feel free to try the rest. It is far from bug free as it is a huge system, I will need quite a few months to complete this system.  Video: <a href="http://screencast.com/t/pxcZgritEkk4">Click here</a>
 
 Plugin/Libraries/Pages/Outside Code Used
 ========================================
