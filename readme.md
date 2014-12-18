@@ -1,23 +1,57 @@
-## Laravel PHP Framework
+P3 Project 3 - Developer's Best Friend
+======================================
+Live URL of the project
+=======================
+<a href="http://p3.pamelalim.me">p3.pamelalim.me</a>
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+Description of the project
+==========================
+The project attempted is a Course Management System. Since it is virtually impossible to do a course management system within the time frame of about two weeks, this project only involves a part of the CMS.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+The subsystems in the CMS include the following:
+1. Course Management
+2. User Management
+3. Section Management
+4. Notes Management
+5. Teacher Management
+6. Class Management
+7. Messaging System
+8. Task List
+9. Enrollment Management
+10. Framework Management
+11. Course Code Management
+12. Subject Management
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+For this project, only (4) will be demonstrated. However, most of the databases had to be in place as they interlinked.
 
-## Official Documentation
+Technical notes
+===============
+The tables in database involved are:
+1. Users
+2. Subjects
+3. Course Codes
+4. Courses
+5. Course Section (or Lesson)
+6. Section Notes
+7. Enrollment
+8. Course Roles
+9. Note Types
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Use of Laravel
+==============
+Laravel 5 is used in this project. It was a nightmare as there was a delay in the release (it was scheduled for Nov 2014), and the system (as of now) cannot be compiled. Hence I spent more time just finding the bugs and fixing them rather than working on my codes.  It was too late to revert to L4 as the features are quite different.
 
-## Contributing
+Demo Information
+================
+Demonstration will be on the CRUD on notes only.  But feel free to try the rest. It is far from bug free as it is a huge system, I will need quite a few months to complete this system.  Video: <a href="http://screencast.com/t/W6vt9dhy">Click here</a>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+Plugin/Libraries/Pages/Outside Code Used
+========================================
+Bootstrap,
+Laravel,
+Faker,
+Pre,
+Jessenger Oauth2,
+Paypal
+Bootstrap
+Debugbar
