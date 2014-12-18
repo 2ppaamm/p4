@@ -55,7 +55,7 @@ class EnrollmentController extends Controller {
         try {
             $course = Course::findOrFail($request->course_id);
         }
-        catch(exception $e) {
+        catch(\Exception $e) {
             return Redirect::to('/course')->with('flash_message', 'Could not find course.');
         }
 
@@ -86,7 +86,7 @@ class EnrollmentController extends Controller {
                 'privacy'=>True,
             ));
         }
-        catch(exception $e) {
+        catch(\Exception $e) {
             return Redirect::to('/course/show/'.$request->course_id)->with('flash_message', 'You are already enrolled in the course with this role.');
         }
 

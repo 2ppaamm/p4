@@ -54,7 +54,7 @@ class Course_code extends Model {
                 Cache::put('instructorcourses' . $userid, $teachable_courses, 3);
             }
         }
-        catch(exception $e){
+        catch(\Exception $e){
             return Redirect::back()->with('flash_message', 'Error in retrieving courses you can teach.');
         }
         return $teachable_courses;
@@ -112,7 +112,7 @@ class Course_code extends Model {
                 Cache::put('systemcourse_codes', $course_code_list, 3);
             }
         }
-        catch(exception $e){
+        catch(\Exception $e){
             return Redirect::back()->with('flash_message','Error in retrieving the course codes in the system.');
         }
 

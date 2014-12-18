@@ -21,7 +21,7 @@ class Note_type extends Model {
                 return Note_type::lists('format', 'id');
             });
         }
-        catch(exception $e){
+        catch(\Exception $e){
             return Redirect::back()->with('flash_message', 'Error in retrieving list of note_types');
         }
         return $note_list;

@@ -94,7 +94,7 @@ class Course extends Model {
                 Cache::put('usercourse' . $userid, $mycourses, 3);
             }
         }
-        catch(exception $e) {
+        catch(\Exception $e) {
                 return Redirect::back()->with('flash_message', 'Error in retrieving your courses. Try later');
         }
         return $mycourses;
@@ -114,7 +114,7 @@ class Course extends Model {
                 Cache::put('course_code_list' . $course_code, $course_code_courses, 3);
             }
         }
-        catch(exception $e){
+        catch(\Exception $e){
             return Redirect::back()->with('flash_message', 'Error in retrieving courses with course code '.$course_code);
         }
         return $course_code_courses;
@@ -134,7 +134,7 @@ class Course extends Model {
             try {
                 $course = Course::updateCache($id);
             }
-            catch(exception $e) {
+            catch(\Exception $e) {
                 return Redirect::back()->with('flash_message', 'Cache not updated');
             }
         }
@@ -165,7 +165,7 @@ class Course extends Model {
                 ->orderBy('updated_at', 'desc')
                 ->firstorfail();
         }
-        catch(ModelNotFoundException $e) {
+        catch(\Exception $e) {
             dd(get_class_methods($e)); // lists all available methods for exception object
             dd($e);
         }

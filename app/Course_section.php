@@ -28,7 +28,7 @@ class Course_section extends Model {
                 $section->save();
             }
         }
-        catch (exception $e) {
+        catch (\Exception $e) {
             return Redirect::back()->with('flash_message', 'Error in arranging sections');
         }
     }

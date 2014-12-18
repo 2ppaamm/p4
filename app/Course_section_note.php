@@ -35,7 +35,7 @@ class Course_section_note extends Model {
                 $note->save();
             }
         }
-        catch (exception $e) {
+        catch (\Exception $e) {
             return Redirect::back()->with('flash_message', 'Error in arranging notes.');
         }
     }
@@ -84,7 +84,7 @@ class Course_section_note extends Model {
                 Cache::put('note' . $id, $note, 1);                                                  // Cache if key not already there
             }
         }
-        catch(exception $e) {
+        catch(\Exception $e) {
             return Redirect::back()->with('flash_message', 'Cannot find note');
         }
         return $note;
