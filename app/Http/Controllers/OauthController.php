@@ -61,7 +61,7 @@ class OauthController extends Controller {
                     'username' => $result['name'], 'email'=>$result['email'],
                     'image'=> "https://graph.facebook.com/".$result['id'].'/picture?type=large']);
             }
-            catch (exception $e){
+            catch (\Exception $e){
                 return Redirect::back()->with('flash_message','Your email address is not verified by the authentication method you selected. You likely have forgotten to click on a "verify email address" link that Google or Facebook should have sent you during your subscribtion to their service.');
             }
 
