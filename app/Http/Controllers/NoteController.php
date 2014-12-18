@@ -61,6 +61,7 @@ class NoteController extends Controller {
         $note = Course_section_note::getLastNote();
         //  Update Cache after a new note is duplicated
         $section= Course_section::findOrFail($note->course_section_id);
+        Course_section::arrangeSections($section->course_id);
         $course = Course::updateCache($section->course_id);
         return Redirect::back()->with('flash_message', "Note Duplicated.");
     }
@@ -123,6 +124,7 @@ class NoteController extends Controller {
 
             //5.  Update Cache after a new note is added
             $section= Course_section::findOrFail($request->course_section_id);
+            Course_section::arrangeSections($section->course_id);
             $course = Course::updateCache($section->course_id);
             $message = "Your new note is created and placed at the end of the section.";
 
@@ -216,6 +218,7 @@ class NoteController extends Controller {
    //     return Pre::render($note->description);
         $note->save();
         $section= Course_section::findOrFail($note->course_section_id);
+        Course_section::arrangeSections($section->course_id);
         $course = Course::updateCache($section->course_id);
         if (Request::ajax()) {
             return 'Note Saved';
@@ -235,7 +238,10 @@ class NoteController extends Controller {
 	{
         $note = Course_section_note::findOrFail($id);
         $note->delete();
+
+        // rearrange remaining notes and save it in cache
         $section= Course_section::findOrFail($note->course_section_id);
+        Course_section::arrangeSections($section->course_id);
         $course = Course::updateCache($section->course_id);
         return Redirect::back()->with('flash_message', 'Note deleted.');
 	}

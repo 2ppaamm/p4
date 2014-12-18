@@ -20,7 +20,7 @@ class CourseCodesTableSeeder extends Seeder {
             'prereqlevel' => 1200,
             'targetlevel' => 1300,
             'cost' => 2000,
-            'cover' => 'https://www.google.com.au/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0CAcQjRw&url=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FHarvard_Extension_School&ei=_7aBVPywBtXm8AXs2oCwDA&bvm=bv.80642063,d.dGc&psig=AFQjCNGsiNNdFEj3P3hPhgGLd1WesorkPQ&ust=1417873533132573',
+            'cover' => 'http://upload.wikimedia.org/wikipedia/en/8/89/ExtensionFlag.png',
             'privacy'=>False
         ]);
 
@@ -39,5 +39,4 @@ class CourseCodesTableSeeder extends Seeder {
             'privacy'=>False
         ]);
     }
-
 }

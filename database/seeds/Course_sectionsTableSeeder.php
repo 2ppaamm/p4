@@ -14,7 +14,7 @@ class Course_sectionsTableSeeder extends Seeder {
             'lesson_number' =>1,
             'title'=>'Reading for Toddler',
             'description' => 'Lesson 1.1',
-            'course_id' => $faker->randomNumber(2, 10),
+            'course_id' => $faker->randomNumber(2, 6),
             'guid' => 'http://lorempixel.com/400/200/',
             'privacy' => FALSE
         ]);
@@ -157,49 +157,50 @@ class Course_sectionsTableSeeder extends Seeder {
             'privacy' => FALSE
         ]);
 
-        for ($i = 0; $i < 10; $i++)
+        for ($i = 1; $i < 10; $i++)
         {
             $course_section = Course_section::create([
             'lesson_number' => $i,
             'title'=>$faker->sentence(2),
             'description' => 'Lesson is about '.$faker->text(),
-            'course_id' => $faker->randomNumber(2, 10),
+            'course_id' => $faker->randomNumber(2, 5),
             'guid' => 'http://lorempixel.com/400/200/sports/',
             'privacy' => FALSE
             ]);
         }
-        for ($i = 0; $i < 20; $i++)
+        for ($i = 10; $i < 20; $i++)
         {
             $course_section = Course_section::create(array(
             'lesson_number' => $i,
             'title'=>$faker->sentence(2),
             'description' => 'Lesson is about '.$faker->sentence(),
-            'course_id' => $faker->randomNumber(2,10),
+            'course_id' => $faker->randomNumber(2,6),
             'guid' => 'http://lorempixel.com/400/200/people/',
             'privacy' => FALSE
             ));
         }
-        for ($i = 0; $i < 30; $i++)
+        for ($i = 20; $i < 30; $i++)
         {
             $course_section = Course_section::create(array(
             'lesson_number' => $i,
             'title'=>$faker->sentence(2),
             'description' => 'Lesson description sound like '.$faker->sentence(),
-            'course_id' => $faker->randomNumber(2,10),
+            'course_id' => $faker->randomNumber(2,6),
             'guid' => 'http://lorempixel.com/400/200/fashion/',
             'privacy' => FALSE
              ));
         }
-        for ($i = 0; $i < 40; $i++)
+        for ($i = 31; $i < 40; $i++)
         {
             $course_section = Course_section::create(array(
             'lesson_number' => $i,
             'title'=>$faker->sentence(2),
             'description' => 'Lesson description is '.$faker->sentence(),
-            'course_id' => $faker->randomNumber(2,10),
+            'course_id' => $faker->randomNumber(2,6),
             'guid' => 'http://lorempixel.com/400/200/food/',
             'privacy' => FALSE
             ));
         }
     }
+
 }

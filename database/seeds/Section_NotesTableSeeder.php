@@ -142,7 +142,7 @@ class Section_notesTableSeeder extends Seeder {
         {
             $note = Course_section_note::create(array(
                 'note_order' => $i+31,
-                'course_section_id' => $faker->randomNumber(17,100 ),
+                'course_section_id' => $faker->randomNumber(17,50 ),
                 'title'=>'Note 2'.$i,
                 'user_id' => $faker->randomNumber(1,10),
                 'description' => 'Note'.$faker->text(),
