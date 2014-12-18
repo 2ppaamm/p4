@@ -11,7 +11,7 @@
 |
 */
 // Get Home
-$router->get('/', ['as' => 'home', 'uses' => 'HomeController@index'] );
+$router->get('/', ['as' => 'home', 'uses' => 'CourseController@getMyCourses'] );
 // Logout with a closure
 //$router->get('/logout', function(){
 //    \Illuminate\Support\Facades\Auth::logout();

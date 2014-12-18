@@ -25,19 +25,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Section_NotesTableSeeder.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database/seeds/Section_NotesTableSeeder.php">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.724234" vertical-offset="4723" max-vertical-offset="5214">
-              <caret line="153" column="5" selection-start-line="153" selection-start-column="5" selection-end-line="153" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.82258064" vertical-offset="123" max-vertical-offset="2508">
+              <caret line="13" column="75" selection-start-line="13" selection-start-column="75" selection-end-line="13" selection-end-column="75" />
               <folding>
-                <marker date="1418931069273" expanded="true" signature="905:1323" placeholder="..." />
-                <marker date="1418931069273" expanded="true" signature="1825:2138" placeholder="..." />
-                <marker date="1418931069273" expanded="true" signature="2272:2420" placeholder="..." />
-                <marker date="1418931069273" expanded="true" signature="2485:2971" placeholder="..." />
-                <marker date="1418931069273" expanded="true" signature="3412:3725" placeholder="..." />
-                <marker date="1418931069273" expanded="true" signature="3859:4007" placeholder="..." />
-                <marker date="1418931069273" expanded="true" signature="4072:4558" placeholder="..." />
+                <element signature="e#7#392#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,7 +85,6 @@
         <option value="$PROJECT_DIR$/resources/views/note/form.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/EditNoteRequest.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_28_005521_create_section_notes_table.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/note/edit.blade.php" />
         <option value="$PROJECT_DIR$/app/Course.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
@@ -104,6 +97,7 @@
         <option value="$PROJECT_DIR$/database/seeds/CourseCodesTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/Course_sectionsTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/Section_NotesTableSeeder.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
       </list>
     </option>
   </component>
@@ -731,14 +725,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5564516" vertical-offset="915" max-vertical-offset="2211">
-          <caret line="43" column="58" selection-start-line="34" selection-start-column="58" selection-end-line="34" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/note/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36768803" vertical-offset="3630" max-vertical-offset="4389">
@@ -751,14 +737,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.81615597" vertical-offset="499" max-vertical-offset="5907">
           <caret line="27" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CourseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.724234" vertical-offset="3634" max-vertical-offset="4422">
-          <caret line="126" column="5" selection-start-line="118" selection-start-column="5" selection-end-line="118" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -848,15 +826,33 @@
     <entry file="file://$PROJECT_DIR$/database/seeds/Section_NotesTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.724234" vertical-offset="4723" max-vertical-offset="5214">
-          <caret line="153" column="5" selection-start-line="153" selection-start-column="5" selection-end-line="153" selection-end-column="5" />
+          <caret line="153" column="5" selection-start-line="151" selection-start-column="5" selection-end-line="151" selection-end-column="5" />
           <folding>
-            <marker date="1418931069273" expanded="true" signature="905:1323" placeholder="..." />
-            <marker date="1418931069273" expanded="true" signature="1825:2138" placeholder="..." />
-            <marker date="1418931069273" expanded="true" signature="2272:2420" placeholder="..." />
-            <marker date="1418931069273" expanded="true" signature="2485:2971" placeholder="..." />
-            <marker date="1418931069273" expanded="true" signature="3412:3725" placeholder="..." />
-            <marker date="1418931069273" expanded="true" signature="3859:4007" placeholder="..." />
-            <marker date="1418931069273" expanded="true" signature="4072:4558" placeholder="..." />
+            <marker date="1418931069273" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1418931069273" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1418931069273" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1418931069273" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1418931069273" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1418931069273" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1418931069273" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CourseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3323263" vertical-offset="583" max-vertical-offset="4422">
+          <caret line="29" column="31" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.82258064" vertical-offset="123" max-vertical-offset="2508">
+          <caret line="13" column="75" selection-start-line="13" selection-start-column="75" selection-end-line="13" selection-end-column="75" />
+          <folding>
+            <element signature="e#7#392#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
