@@ -26,8 +26,22 @@ class CoursesTableSeeder extends Seeder {
             'cover' => 'http://upload.wikimedia.org/wikipedia/en/8/89/ExtensionFlag.png',
             'privacy'=>False
         ]);
+        $course = Course::create([
+            'title' => 'Teaching your toddler to read',
+            'description' => 'Yes, we do have a course to teach a baby to read!<p>Preparing a baby to read means to making him understand that symbols relate to meanings. The course will teach a toddler to understand and link to alphabets and numbers.</p>This course is a 3 months\' access to materials to teach a baby up to three years old to read. If your baby is older than 2 years and 9 months old, the benefits might not as visible.<p>Our course is based upon tried and tested methods researched through decades and tested on millions of children.</p><p>Although many children who have been through the program gained photographic memory, we do not have enough statistics to prove that this is indeed true, and thus this is not our claim. While millions start to read at record age, we believe results do vary with the way the parents use the resources we provide.</p>',
+            'course_creator' => 1,
+            'course_code_id'=>2,
+            'course_type_id' => 1,
+            'subject_id' => 1,
+            'prereqlevel' => 0,
+            'targetlevel' => 100,
+            'cost' => 300,
+            'duration' => 26,
+            'cover' => 'http://school.all-gifted.com/pluginfile.php/1463/course/overviewfiles/Hands-Down-2-1280x960.jpg',
+            'privacy'=>False
+        ]);
 
-        for ($i = 0; $i < 10; $i++)
+        for ($i = 1; $i < 5; $i++)
         {
             $course = Course::create([
                 'title' => 'Course Number'.$i,

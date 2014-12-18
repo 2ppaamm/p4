@@ -22,6 +22,24 @@ class Course_section_note extends Model {
         return $this->belongsTo('App\User', 'user_id');
     }
 
+    /** Sorts and arrange the sections in the course
+     * @params course_id
+     */
+    public static function arrangeNotes($section_id){
+        try {
+            $course_section_notes = Course_section_note::where('course_section_id', '=', $section_id)
+                ->select('id', 'note_order')->orderBy('note_order', 'asc')
+                ->orderBy('updated_at', 'asc')->get();
+            foreach ($course_section_notes as $position => $note) {
+                $note->note_order = $position;
+                $note->save();
+            }
+        }
+        catch (exception $e) {
+            return Redirect::back()->with('flash_message', 'Error in arranging notes.');
+        }
+    }
+
     /** The input are:
      *  $note: an array that contains the id of the note to be ordered
      *  $section_id: contains the section_id for the note

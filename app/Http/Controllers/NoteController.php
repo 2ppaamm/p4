@@ -53,14 +53,16 @@ class NoteController extends Controller {
     public function duplicate($id)
     {
         // Find the note to be duplicated and then duplicate it
-        $note = $this->find($id);
-        if (isset($note)) {
-            $newnote = new Course_section_note();
-            $newnote = $note;
-            $newnote->save();
-        }
-        else return "Error in duplicating notes";
-        return "Note successfully created";
+//        return "Hello duplicate ".$id;
+        $oldnote = Course_section_note::findNote($id);
+        // Duplicate a new note
+        Course_section_note::saveNote($oldnote);
+        Course_section_note::arrangeNotes($oldnote->course_section_id);
+        $note = Course_section_note::getLastNote();
+        //  Update Cache after a new note is duplicated
+        $section= Course_section::findOrFail($note->course_section_id);
+        $course = Course::updateCache($section->course_id);
+        return Redirect::back()->with('flash_message', "Note Duplicated.");
     }
 
     /**

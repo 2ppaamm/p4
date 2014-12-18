@@ -8,10 +8,10 @@
                 <li id="/note/{{$note->id}}" class="note_action">
                     <a href="javascript:;"><i class="fa fa-play-circle"></i>VIEW</a>
                 </li>
-                <li id="/note/{{$note->id}}/duplicate" class="note_action">
-                    <a href="javascript:;"><i class="fa fa-copy"></i>DUPLICATE</a>
+                <li id="/note/{{$note->id}}/duplicate">
+                    <a href="/note/{{$note->id}}/duplicate"><i class="fa fa-copy"></i>DUPLICATE</a>
                 </li>
-                <li id="/note/{{$note->id}}/edit" class="note_action">
+                <li id="/note/{{$note->id}}/edit">
                     <a data-toggle="modal" data-note-id ="{{ $note->id }}"
                         data-note-description="{{$note->description}}" data-note-title="{{$note->title}}" href="#note-edit-{{$note->id}}">
                         <i class="fa fa-pencil"></i>

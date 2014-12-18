@@ -152,5 +152,4 @@ class Section_notesTableSeeder extends Seeder {
             ));
         }
     }
-
 }

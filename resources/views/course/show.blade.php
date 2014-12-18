@@ -176,14 +176,12 @@
     <script>
         // Javascript to find the id of the note and action clicked on
         $('.note_action').on('click', function () {
-            $( "#tab_1_note" ).load( this.id);
-            $("[name^='tab_id']").removeClass('active');
-            $('#tab_id_note').addClass('active');
-            $('#tab_1_note').addClass('active');
-
-            //, function() {
-      //      alert( "Load was performed." );
-    //          })
+       //     alert(this.id)
+            $( "#tab_1_note" ).load( this.id, function(){
+                $("[name^='tab_id']").removeClass('active');
+                $('#tab_id_note').addClass('active');
+                $('#tab_1_note').addClass('active');
+            });
         });
     </script>
 <!-- Ajax form submission couldn't go into show1 -->

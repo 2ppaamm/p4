@@ -52,12 +52,6 @@
     				<li>
     					<a class="social-icon-color facebook" data-original-title="facebook" href="/fblogin"></a>
     				</li>
-    				<li>
-    					<a class="social-icon-color googleplus" data-original-title="Google Plus" href="/fblogin"></a>
-    				</li>
-    				<li>
-    					<a class="social-icon-color linkedin" data-original-title="Linkedin" href="/fblogin"></a>
-    				</li>
     			</ul>
     		</div>
             <div class="create-account">

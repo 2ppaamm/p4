@@ -202,5 +202,4 @@ class Course_sectionsTableSeeder extends Seeder {
             ));
         }
     }
-
 }
