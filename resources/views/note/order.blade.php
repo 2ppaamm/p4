@@ -15,7 +15,7 @@
             <!-- Arrange_notes form input -->
             @if(isset($course->course_sections))
                 @for($i = 0; $i<count($course->course_sections); $i++)
-                    <div class="form-group" style="display: none">
+                    <div class="form-group" style="display: block">
                         <textarea name = '{{$course->course_sections[$i]->id}}' id="nestable_list_{{$i+1}}_output" class="notes_order"></textarea>
                     </div>
                 @endfor

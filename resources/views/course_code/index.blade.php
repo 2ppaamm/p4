@@ -20,7 +20,7 @@
 			<div class="portlet-title">
 				<div class="caption">
 	    			<i class="fa fa-cogs font-green-sharp"></i>
-					<span class="caption-subject font-green-sharp bold uppercase">Course Codes in System</span>
+					<span class="caption-subject font-green-sharp bold uppercase">Choose a course, and view the classes, then enrol in a class to test this project.</span>
 				</div>
 				<div class="tools">
 		    		<a href="javascript:;" class="collapse"></a>

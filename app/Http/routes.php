@@ -11,7 +11,7 @@
 |
 */
 // Get Home
-$router->get('/', ['as' => 'home', 'uses' => 'CourseController@getMyCourses'] );
+$router->get('/', ['as' => 'home', 'uses' => 'CourseCodeController@index'] );
 $router->get('/500', function(){ return \Illuminate\Support\Facades\View::make('_500');});
 /*
 |--------------------------------------------------------------------------
