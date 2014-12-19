@@ -77,19 +77,19 @@ class CourseController extends Controller {
     {
         // get info on course, and the sections and the notes attached to it
         $course = Course::getCourseInfo($id);
-
         // throw an error if the course is not found
-        if (count($course) < 1) {
-            return Redirect::back()->with('flash_message', 'Cannot retrieve course information.');
+        if (!isset($course->id)) {
+            return Redirect::to('/500')->with('flash_message', "You've keyed in the wrong course id");
         }
-
         // if no error then go ahead and get other info for building the page
         else {
             $note_types = Note_type::list_note_types();
             //build a list of sections in this course
-            $sections = array();
-            foreach ($course->course_sections as $section) {
-                $sections = array_add($sections, $section->id, $section->title);
+            if (isset($course->course_sections)) {
+                $sections = array();
+                foreach ($course->course_sections as $section) {
+                    $sections = array_add($sections, $section->id, $section->title);
+                }
             }
             return view('course.show', compact('course', 'note_types', 'sections'));
         }

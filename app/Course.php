@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
+use Paste\Pre;
 
 class Course extends Model {
 
@@ -127,16 +128,15 @@ class Course extends Model {
      * @return details of course, including the sections in the course, and the notes within each section
      */
     public static function getCourseInfo($id){
-        if (Cache::has('course'.$id)) {                                                                  // Check if course is cached and then retrieve cached info
-            $course = Cache::get('course'.$id);
-        }
-        else {
-            try {
+        try {
+            if (Cache::has('course' . $id)) {                                                                  // Check if course is cached and then retrieve cached info
+                $course = Cache::get('course' . $id);
+            } else {
                 $course = Course::updateCache($id);
             }
-            catch(\Exception $e) {
-                return Redirect::back()->with('flash_message', 'Cache not updated');
-            }
+        }
+        catch(\Exception $e) {
+            return Redirect::to('/500');
         }
         return $course;
     }
@@ -164,14 +164,15 @@ class Course extends Model {
                 ->whereId($id)
                 ->orderBy('updated_at', 'desc')
                 ->firstorfail();
-        }
-        catch(\Exception $e) {
-            dd(get_class_methods($e)); // lists all available methods for exception object
-            dd($e);
-        }
             Cache::put('course'.$id, $course, 100);                   // Cache information
-
-        return $course;
+            return $course;
+        }
+        catch (\Exception $e) {
+            return Redirect::to('/500');
+        }
+    }
+    public function missingMethod() {
+        return Redirect::to('/')->with('flash_message', 'Error.  Redirected.');
     }
 
 }

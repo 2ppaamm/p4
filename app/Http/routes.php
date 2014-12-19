@@ -12,13 +12,7 @@
 */
 // Get Home
 $router->get('/', ['as' => 'home', 'uses' => 'CourseController@getMyCourses'] );
-// Logout with a closure
-//$router->get('/logout', function(){
-//    \Illuminate\Support\Facades\Auth::logout();
-//    echo "Logged out";
-//    return redirect('/');
-//});
-
+$router->get('/500', function(){ return \Illuminate\Support\Facades\View::make('_500');});
 /*
 |--------------------------------------------------------------------------
 | Authentication & Password Reset Controllers
