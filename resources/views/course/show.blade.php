@@ -208,5 +208,4 @@
 	// it will be submitted via ajax
     	$('#note_create').ajaxForm(options);
 	</script>
-
 @stop

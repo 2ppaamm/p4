@@ -108,7 +108,7 @@ class NoteController extends Controller {
                 $replace_text = 'p/embed?token';
                 $filename = substr_replace($filename, $replace_text, $index, strlen($replace_text));
             }
-        } else $filename = $storage_path . 'default-cover.png'; // use a default image if no file uploaded
+        } else $filename = $storage_path . 'default-cover.jpg'; // use a default image if no file uploaded
         // 3. Check for url link
         //set privacy of note
         if (isset($request->privacy))
@@ -184,7 +184,6 @@ class NoteController extends Controller {
         //2. Save the input file if there is a file
         if (isset($request['link'])) {
             $filename = $request['link'];
-
             if ($note->note_type->format == 'File' || $note->note_type->format == 'Image'){
                 $file = Input::file('link');
                 if (null !== $file) {
@@ -207,7 +206,7 @@ class NoteController extends Controller {
                 }
             }
         }
-        else $filename = $storage_path . 'default-cover.png'; // use a default image if no file uploaded
+        else $filename = $storage_path . 'default-cover.jpg'; // use a default image if no file uploaded
         if (isset($filename)){
             $note->link = $filename;
         }

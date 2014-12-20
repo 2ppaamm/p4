@@ -100,3 +100,27 @@
                         </div>
                     </div>
                 {!! Form::close() !!}
+<!-- Ajax form submission couldn't go into show1 -->
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+	<script>
+	// First, set up the options for the ajax submission
+        var options = {
+            type: 'post',
+            url: '/note',
+            success: function(response) {
+                // Load the results recieved from process.php into the results div
+                $( ".close" ).trigger( "click" );              //closes the modal
+                location.reload();
+            },
+            error: function (response) {
+                $('.form-errors').html('');                             // clears the element first before putting errors there.
+                $.each (response['responseJSON'], function(key, val){
+                    $('.form-errors').append('*'+val+'<br />');
+                })
+            }
+        };
+	// Then attach the ajax form plugin to this form so that when it's submitted,
+	// it will be submitted via ajax
+    	$('#note_create').ajaxForm(options);
+	</script>

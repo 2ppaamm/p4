@@ -19,8 +19,6 @@ class EditNoteRequest extends Request {
 	public function rules()
 	{
 		return [
-            'note_title' =>'required',
-            'note_description'=>'required',
             'input-file' => 'required_if:note_type,4 | mimes:pdf',
             'image-file' => 'required_if:note_type,10 | image',
             'url'=>'required_if:note_type,1,3,5'

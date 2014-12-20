@@ -91,7 +91,7 @@ class CourseController extends Controller {
                     $sections = array_add($sections, $section->id, $section->title);
                 }
             }
-            return view('course.show', compact('course', 'note_types', 'sections'));
+            return view('course.show1', compact('course', 'note_types', 'sections'));
         }
     }
 

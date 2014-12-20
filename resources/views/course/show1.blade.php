@@ -33,7 +33,6 @@
 
                 <div class="portlet-body">
                     <div class="row">
-                        @include('note.edit')
                     </div>
                     <div class="row" id = 'course-main'>
                         <div class="col-md-4 col-sm-3">
@@ -64,6 +63,7 @@
                     <!-- END PAGE CONTENT INNER -->
         </div>
     </div>
+</div>
     <!-- END PAGE CONTAINER -->
 @stop
 @section('page_scripts')
@@ -104,23 +104,86 @@
         });
     </script>
 
-    <script>
-        // Javascript to find the id of the element clicked on
-        $('.note_action').on('click', function () {
-            alert(this.id)
-            $( "#course_body" ).load( this.id, function() {
-      //      alert( "Load was performed." );
-            })
-        });
-    </script>
 <!-- Script that shows the lesson when mouseover -->
 <script>
 // highlight the right tab
     $( "ul[name^='lesson-number']" ).click(function () {
         $("[name^='tab_id']").removeClass('active');
         $('#tab_id_'+this.id).addClass('active');
-        //$('#section'+this.id).trigger('click');
     })
   .click(function(){});
 </script>
+    <script>
+    // format input for form according to note_type
+	$( "select" )
+      .change(function () {
+        var note_type = $( "select option:selected" ).text().toLowerCase();
+        if( note_type.indexOf('video') > -1) {
+            $( ".note_type_message" ).text( 'Please specify youtube link for video.' );
+            $('.file-link').css('display', 'none');
+            $('.image-link').css('display', 'none');
+            $('.url-link').css('display', 'block');
+            $('.form-buttons').css('display', 'block');
+        }
+        else if( note_type.indexOf('slide') > -1) {
+            $( ".note_type_message" ).text( 'Please specify slides link from http://lab.hakim.se/reveal-js/.' );
+            $('.file-link').css('display', 'none');
+            $('.image-link').css('display', 'none');
+            $('.url-link').css('display', 'block');
+            $('.form-buttons').css('display', 'block');
+        }
+        else if( note_type.indexOf('link') > -1) {
+            $( ".note_type_message" ).text( 'Please specify a link.' );
+            $('.file-link').css('display', 'none');
+            $('.image-link').css('display', 'none');
+            $('.url-link').css('display', 'block');
+            $('.form-buttons').css('display', 'block');
+            $('.form-errors').html('');
+        }
+        else if(note_type.indexOf('file') > -1) {
+            $( ".note_type_message" ).text( 'Please upload the relevant pdf file.' );
+            $('.file-link').css('display', 'block');
+            $('.image-link').css('display', 'none');
+            $('.url-link').css('display', 'none');
+            $('.form-buttons').css('display', 'block');
+            $('.form-errors').html('');
+        }
+        else if(note_type.indexOf('image') > -1) {
+            $( ".note_type_message" ).text( 'Please upload the relevant image file.' );
+            $('.file-link').css('display', 'none');
+            $('.image-link').css('display', 'block');
+            $('.url-link').css('display', 'none');
+            $('.form-buttons').css('display', 'block');
+            $('.form-errors').html('');
+        }
+        else if(note_type.indexOf('text') > -1) {
+            $( ".note_type_message" ).text( 'Key in Announcement/Text. HTML tags allowed.' );
+            $('.file-link').css('display', 'none');
+            $('.image-link').css('display', 'none');
+            $('.url-link').css('display', 'none');
+            $('.form-buttons').css('display', 'block');
+            $('.form-errors').html('');
+        }
+        else {
+            $( ".note_type_message" ).text( 'Choose another activity. This is not being implemented for P4 yet.' );
+            $('.file-link').css('display', 'none');
+            $('.image-link').css('display', 'none');
+            $('.url-link').css('display', 'none');
+            $('.form-buttons').css('display', 'none');
+            $('.form-errors').html('');
+        }
+      })
+      .change();
+    </script>
+    <script>
+        // Javascript to find the id of the note and action clicked on
+        $('.note_action').on('click', function () {
+       //     alert(this.id)
+            $( "#tab_1_note" ).load( this.id, function(){
+                $("[name^='tab_id']").removeClass('active');
+                $('#tab_id_note').addClass('active');
+                $('#tab_1_note').addClass('active');
+            });
+        });
+    </script>
 @stop
