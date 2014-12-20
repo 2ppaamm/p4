@@ -24,7 +24,7 @@ class Course_section extends Model {
                 ->select('id', 'lesson_number')->orderBy('lesson_number', 'asc')
                 ->orderBy('updated_at', 'asc')->get();
             foreach ($course_sections as $position => $section) {
-                $section->lesson_number = $position;
+                $section->lesson_number = $position+1;
                 $section->save();
             }
         }
